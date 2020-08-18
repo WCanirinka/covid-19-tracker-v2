@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { MenuItem, FormControl, Select} from '@material-ui/core';
+import { MenuItem, FormControl, Select, Card} from '@material-ui/core';
+import InfoBox from './InfoBox';
+import Map from './Map';
 import './App.css';
 
 // BEM naming convention
@@ -38,35 +40,39 @@ function App() {
 
   return (
     <div className="app">
-      <div className='app__header'>
-        <h1>COVID-19 TRACKER</h1>
-        <FormControl className='app__dropdown'>
-          <Select variant='outlined' onChange={onCountryChange} value={country}>
-            {/* Loop through all the countries and show a dropdown list of options */}
-            <MenuItem value='worldwide'>Worldwide</MenuItem>
-            {
-              countries.map(country => (
-                <MenuItem value={country.value}>{country.name}</MenuItem>
-              ))
-            }
+      <div className='app__left'>
 
-            {/* <MenuItem value='worldwide'>Worldwide</MenuItem> */}
-          </Select>
-        </FormControl>
+        <div className='app__header'>
+          <h1>COVID-19 TRACKER</h1>
+          <FormControl className='app__dropdown'>
+            <Select variant='outlined' onChange={onCountryChange} value={country}>
+              {/* Loop through all the countries and show a dropdown list of options */}
+              <MenuItem value='worldwide'>Worldwide</MenuItem>
+              {
+                countries.map(country => (
+                  <MenuItem value={country.value}>{country.name}</MenuItem>
+                ))
+              }
+
+              {/* <MenuItem value='worldwide'>Worldwide</MenuItem> */}
+            </Select>
+          </FormControl>
+        </div>
+
+        <div className='app__stats'>
+          <InfoBox title='Coronavirus Cases' />
+          <InfoBox title='Recovered' />
+          <InfoBox title='Deaths' />
+        </div>
+
+        <Map />
       </div>
 
-      <div className='app__stats'>
-        
-      </div>
+      <Card className='app__right'>
 
-      {/* InfoBoxes */}
-      {/* InfoBoxes */}
-      {/* InfoBoxes */}
-
-      {/* Table */}
-      {/* Graph */}
-
-      {/* Map */}
+        {/* Table */}
+        {/* Graph */}
+      </Card>
     </div>
   );
 }
